@@ -1,0 +1,26 @@
+galaxy_info:
+  author: Pete Brown (rendhalver)
+  description: Install tools for Redhat SRE-P teams
+  company: Red Hat
+  license: Apache-2.0
+
+  min_ansible_version: 2.1
+
+  platforms:
+    - name: Fedora
+      versions:
+      - all
+    - name: Ubuntu
+      versions:
+      - all
+    - name: Debian
+      versions:
+      - all
+    - name: EL
+      versions:
+      - 6
+      - 7
+
+  galaxy_tags: []
+
+dependencies: []

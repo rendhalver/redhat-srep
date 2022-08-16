@@ -1,0 +1,33 @@
+---
+- name: Download oc
+  ansible.builtin.unarchive:
+    src: "https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/{{ redhat_oc_version }}/openshift-client-linux.tar.gz"
+    include: oc
+    dest: '{{ redhat_bin_dir }}'
+    remote_src: yes
+
+- name: Download ocm
+  get_url:
+    url: "https://github.com/openshift-online/ocm-cli/releases/download/v{{ redhat_ocm_version }}/ocm-linux-amd64"
+    dest: '{{ redhat_bin_dir }}/ocm'
+    mode: '0755'
+
+- name: Download osdctl
+  ansible.builtin.unarchive:
+    src: "https://github.com/openshift/osdctl/releases/download/v{{ redhat_osdctl_version }}/osdctl_{{ redhat_osdctl_version }}_Linux_x86_64.tar.gz"
+    include: osdctl
+    dest: '{{ redhat_bin_dir }}'
+    remote_src: yes
+
+- name: Download rosa
+  get_url:
+    url: "https://github.com/openshift/rosa/releases/download/v{{ redhat_rosa_version }}/rosa-linux-amd64"
+    dest: '{{ redhat_bin_dir }}/rosa'
+    mode: '0755'
+
+- name: Download ocm backplane
+  ansible.builtin.unarchive:
+    src: "https://gitlab.cee.redhat.com/service/backplane-cli/-/releases/{{ redhat_backplane_version }}/downloads/backplane-cli_{{ redhat_backplane_version }}_Linux_x86_64.tar.gz"
+    include: ocm-backplane
+    dest: '{{ redhat_bin_dir }}'
+    remote_src: yes

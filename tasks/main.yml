@@ -25,6 +25,13 @@
     dest: '{{ redhat_bin_dir }}/rosa'
     mode: '0755'
 
+- name: Download ocm-container-v2
+  ansible.builtin.unarchive:
+    src: "https://github.com/iamkirkbater/ocm-container-v2/releases/download/v{{ redhat_ocm_container_version }}/ocm-container-v2_{{ redhat_ocm_container_version }}_Linux_x86_64.tar.gz"
+    include: ocm-container-v2
+    dest: '{{ redhat_bin_dir }}'
+    remote_src: yes
+
 - name: Download ocm backplane
   ansible.builtin.unarchive:
     src: "https://gitlab.cee.redhat.com/service/backplane-cli/-/releases/{{ redhat_backplane_version }}/downloads/backplane-cli_{{ redhat_backplane_version }}_Linux_x86_64.tar.gz"

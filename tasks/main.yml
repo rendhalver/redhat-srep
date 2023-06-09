@@ -5,12 +5,22 @@
     include: oc
     dest: '{{ redhat_bin_dir }}'
     remote_src: yes
+  register: redhat_srep_oc
+
+- name: oc completion
+  ansible.builtin.command: "bash -lc '{{ redhat_bin_dir }}/oc completion {{ redhat_completion_shell }} > {{ redhat_completion_dir }}/oc-completion'"
+  when: redhat_srep_oc.changed and redhat_add_completion
 
 - name: Download ocm
   get_url:
     url: "https://github.com/openshift-online/ocm-cli/releases/download/v{{ redhat_ocm_version }}/ocm-linux-amd64"
     dest: '{{ redhat_bin_dir }}/ocm'
     mode: '0755'
+  register: redhat_srep_ocm
+
+- name: ocm completion
+  ansible.builtin.command: "bash -lc '{{ redhat_bin_dir }}/ocm completion {{ redhat_completion_shell }} > {{ redhat_completion_dir }}/ocm-completion'"
+  when: redhat_srep_ocm.changed and redhat_add_completion
 
 - name: Download osdctl
   ansible.builtin.unarchive:
@@ -18,12 +28,22 @@
     include: osdctl
     dest: '{{ redhat_bin_dir }}'
     remote_src: yes
+  register: redhat_srep_osdctl
+
+- name: osdctl completion
+  ansible.builtin.command: "bash -lc '{{ redhat_bin_dir }}/osdctl completion {{ redhat_completion_shell }} > {{ redhat_completion_dir }}/osdctl-completion'"
+  when: redhat_srep_osdctl.changed and redhat_add_completion
 
 - name: Download rosa
   get_url:
     url: "https://github.com/openshift/rosa/releases/download/v{{ redhat_rosa_version }}/rosa-linux-amd64"
     dest: '{{ redhat_bin_dir }}/rosa'
     mode: '0755'
+  register: redhat_srep_rosa
+
+- name: rosa completion
+  ansible.builtin.command: "bash -lc '{{ redhat_bin_dir }}/rosa completion {{ redhat_completion_shell }} > {{ redhat_completion_dir }}/rosa-completion'"
+  when: redhat_srep_rosa.changed and redhat_add_completion
 
 - name: Download ocm-container-v2
   ansible.builtin.unarchive:
@@ -31,10 +51,20 @@
     include: ocm-container-v2
     dest: '{{ redhat_bin_dir }}'
     remote_src: yes
+  register: redhat_srep_occ
+
+- name: occ completion
+  ansible.builtin.command: "bash -lc '{{ redhat_bin_dir }}/ocm-container-v2 completion {{ redhat_completion_shell }} > {{ redhat_completion_dir }}/ocm-container-v2-completion'"
+  when: redhat_srep_occ.changed and redhat_add_completion
 
 - name: Download ocm backplane
   ansible.builtin.unarchive:
-    src: "https://gitlab.cee.redhat.com/service/backplane-cli/-/releases/{{ redhat_backplane_version }}/downloads/backplane-cli_{{ redhat_backplane_version }}_Linux_x86_64.tar.gz"
+    src: "https://github.com/openshift/backplane-cli/releases/download/v{{ redhat_backplane_version }}/ocm-backplane_{{ redhat_backplane_version }}_Linux_x86_64.tar.gz"
     include: ocm-backplane
     dest: '{{ redhat_bin_dir }}'
     remote_src: yes
+  register: redhat_srep_ocm_backplane
+
+- name: ocm-backplane completion
+  ansible.builtin.command: "bash -lc '{{ redhat_bin_dir }}/ocm-backplane completion {{ redhat_completion_shell }} > {{ redhat_completion_dir }}/ocm-backplane-completion'"
+  when: redhat_srep_ocm_backplane.changed and redhat_add_completion

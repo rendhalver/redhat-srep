@@ -2,10 +2,10 @@
 # defaults file for redhat
 redhat_bin_dir: '~/.local/bin'
 redhat_oc_version: 'stable'
-redhat_ocm_version: '0.1.66'
-redhat_backplane_version: '0.1.4'
-redhat_osdctl_version: '0.15.0'
-redhat_rosa_version: '1.2.22'
+redhat_ocm_version: '0.1.67'
+redhat_backplane_version: '0.1.9'
+redhat_osdctl_version: '0.17.0'
+redhat_rosa_version: '1.2.23'
 redhat_ocm_container_version: '0.2.0'
 redhat_add_completion: false
 redhat_completion_dir: '~/.bashrc.d'

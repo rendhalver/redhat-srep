@@ -68,3 +68,11 @@
 - name: ocm-backplane completion
   ansible.builtin.command: "bash -lc '{{ redhat_bin_dir }}/ocm-backplane completion {{ redhat_completion_shell }} > {{ redhat_completion_dir }}/ocm-backplane-completion'"
   when: redhat_srep_ocm_backplane.changed and redhat_add_completion
+
+- name: install oc-nodepp
+  ansible.builtin.unarchive:
+    src: "https://github.com/mrbarge/oc-nodepp/releases/download/v{{ redhat_oc_nodepp_version }}/oc-nodepp_Linux_x86_64.tar.gz"
+    include: oc-nodepp
+    dest: '{{ tools_bin_dir }}'
+    remote_src: yes
+  register: tools_oc_nodepp

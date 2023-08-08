@@ -12,11 +12,13 @@ Variables are available to set the bin dir and versions of our tools to install.
 
 ```yaml
 redhat_bin_dir: '~/.local/bin'
-redhat_oc_version: '4.10.20'
-redhat_ocm_version: '0.1.63'
-redhat_backplane_version: '0.0.23'
-redhat_osdctl_version: '0.9.6'
-redhat_rosa_version: '1.2.5'
+redhat_oc_version: 'stable'
+redhat_ocm_version: '0.1.67'
+redhat_backplane_version: '0.1.9'
+redhat_osdctl_version: '0.17.0'
+redhat_rosa_version: '1.2.23'
+redhat_ocm_container_version: '0.2.0'
+redhat_oc_nodepp_version: '0.1.1'
 ```
 
 ## Dependencies
